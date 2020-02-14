@@ -93,39 +93,41 @@ def get_uid(df):
     uid = set(df['uid'].tolist())
     return list(uid)
 
+def clean_data(df):
+    return
+
 if __name__ == "__main__":
     df_1 = pd.read_csv('trackdata_c1.csv')
-#    df_2 = pd.read_csv('trackdata_c2.csv')
+    df_2 = pd.read_csv('trackdata_c2.csv')
     
     # Needs sorting according to row_number (currently coods scrambled)
     df_x = pd.read_csv('trackdata_cx.csv')
+    
 #    lon = df_1.loc[df_1['uid']==5, 'lat'].to_numpy()
 #    lat = df_1.loc[df_1['uid']==5, 'lon'].to_numpy()
     
 #    uid = route_distance(df, uid)
-    manager = Manager()
-    return_dict = manager.dict()
-    jobs=[]
     
-    '''Run route_distance in Colab'''
-    trucks = sorted(set(df_1['uid']))
+#    clean_df = clean_data(df_1)
     
-    #Parallel Implementation
-    for truck in trucks[:2]:
-        m = Process(target=route_distance, name=truck, args=(df_x, truck))
-        m.daemon = True
-        jobs.append(m)
-        m.start()
-    
-    for proc in jobs:
-        proc.join()
-    
-    distances = return_dict.copy()
-    
-#    distance_1 = {}
-#    for truck in trucks[:30]:
-#        distance_1[truck] = np.sum(norm_route_distance(df_x, truck))
+#    manager = Manager()
+#    return_dict = manager.dict()
+#    jobs=[]
+#    
+#    '''Run route_distance in Colab'''
+#    trucks = sorted(set(df_1['uid']))
+#    
+#    #Parallel Implementation
+#    for truck in trucks[:2]:
+#        m = Process(target=route_distance, name=truck, args=(df_x, truck))
+#        m.daemon = True
+#        jobs.append(m)
+#        m.start()
+#    
+#    for proc in jobs:
+#        proc.join()
+#    
+#    distances = return_dict.copy()    
     
     with open('geodesic_distances_c1.txt') as json_file:
         data = json.load(json_file)
-#    plot_on_map(df_1)

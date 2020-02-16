@@ -111,7 +111,7 @@ class Generator:
         m = self.generateMap(settings)
         
         print("Saving map to {}\n".format(output_file))
-        m.save(output_file)
+#        m.save(output_file)
 
 
 if __name__ == "__main__":
@@ -119,11 +119,6 @@ if __name__ == "__main__":
     
     parser.add_argument("-o", "--output", dest="output", type=str, required=False,
                         help="Path of heatmap HTML output file.", default="heatmap.html")
-    parser.add_argument("--min-date", dest="min_date", metavar="YYYY-MM-DD", type=str, required=False,
-                        help="The earliest date from which you want to see data in the heatmap.")
-    parser.add_argument("--max-date", dest="max_date", metavar="YYYY-MM-DD", type=str, required=False,
-                        help="The latest date from which you want to see data in the heatmap.")
-    parser.add_argument("-s", "--stream", dest="stream", action="store_true", help="Option to iteratively load data.")
     parser.add_argument("--map", "-m", dest="map", metavar="MAP", type=str, required=False, default="OpenStreetMap",
                         help="The name of the map tiles you want to use.\n" \
                         "(e.g. 'OpenStreetMap', 'StamenTerrain', 'StamenToner', 'StamenWatercolor')")
